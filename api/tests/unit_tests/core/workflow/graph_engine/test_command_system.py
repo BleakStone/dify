@@ -71,7 +71,8 @@ def test_abort_command():
     # Find the abort event and check its reason
     abort_events = [e for e in events if isinstance(e, GraphRunAbortedEvent)]
     assert len(abort_events) == 1
-    assert "aborted by user command" in abort_events[0].reason.lower()
+    assert abort_events[0].reason is not None
+    assert "aborted: test abort" in abort_events[0].reason.lower()
 
 
 def test_redis_channel_serialization():

@@ -40,7 +40,7 @@ def test_execute_code(setup_code_executor_mock):
                 "target": "1",
             },
         ],
-        "nodes": [{"data": {"type": "start"}, "id": "start"}, config],
+        "nodes": [{"data": {"type": "start", "title": "Start"}, "id": "start"}, config],
     }
 
     init_params = GraphInitParams(

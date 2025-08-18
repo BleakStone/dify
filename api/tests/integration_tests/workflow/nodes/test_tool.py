@@ -23,7 +23,7 @@ def init_tool_node(config: dict):
                 "target": "1",
             },
         ],
-        "nodes": [{"data": {"type": "start"}, "id": "start"}, config],
+        "nodes": [{"data": {"type": "start", "title": "Start"}, "id": "start"}, config],
     }
 
     init_params = GraphInitParams(

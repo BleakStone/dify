@@ -29,7 +29,7 @@ def init_code_node(code_config: dict):
                 "target": "code",
             },
         ],
-        "nodes": [{"data": {"type": "start"}, "id": "start"}, code_config],
+        "nodes": [{"data": {"type": "start", "title": "Start"}, "id": "start"}, code_config],
     }
 
     init_params = GraphInitParams(

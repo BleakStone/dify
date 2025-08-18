@@ -43,7 +43,7 @@ def init_parameter_extractor_node(config: dict):
                 "target": "llm",
             },
         ],
-        "nodes": [{"data": {"type": "start"}, "id": "start"}, config],
+        "nodes": [{"data": {"type": "start", "title": "Start"}, "id": "start"}, config],
     }
 
     init_params = GraphInitParams(

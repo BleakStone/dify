@@ -28,7 +28,7 @@ def init_llm_node(config: dict) -> LLMNode:
                 "target": "llm",
             },
         ],
-        "nodes": [{"data": {"type": "start"}, "id": "start"}, config],
+        "nodes": [{"data": {"type": "start", "title": "Start"}, "id": "start"}, config],
     }
 
     # Use proper UUIDs for database compatibility

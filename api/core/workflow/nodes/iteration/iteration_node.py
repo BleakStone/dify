@@ -228,16 +228,14 @@ class IterationNode(Node):
 
         # Create minimal GraphRuntimeState for static analysis
         from core.workflow.entities import VariablePool
+
         graph_runtime_state = GraphRuntimeState(
             variable_pool=VariablePool(),
             start_at=0,
         )
 
         # Create node factory for static analysis
-        node_factory = DifyNodeFactory(
-            graph_init_params=graph_init_params,
-            graph_runtime_state=graph_runtime_state
-        )
+        node_factory = DifyNodeFactory(graph_init_params=graph_init_params, graph_runtime_state=graph_runtime_state)
 
         iteration_graph = Graph.init(
             graph_config=graph_config,

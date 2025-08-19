@@ -318,10 +318,7 @@ class LoopNode(Node):
         )
 
         # Create node factory for static analysis
-        node_factory = DifyNodeFactory(
-            graph_init_params=graph_init_params,
-            graph_runtime_state=graph_runtime_state
-        )
+        node_factory = DifyNodeFactory(graph_init_params=graph_init_params, graph_runtime_state=graph_runtime_state)
 
         loop_graph = Graph.init(
             graph_config=graph_config,

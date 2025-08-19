@@ -295,14 +295,37 @@ class LoopNode(Node):
         variable_mapping = {}
 
         # init graph
-        # Note: This is a classmethod without access to instance attributes
-        # We'll skip node factory for now since this appears to be for static analysis
-        # TODO: Refactor to properly handle node factory in classmethods
+        from core.workflow.entities import GraphInitParams, GraphRuntimeState, VariablePool
         from core.workflow.graph import Graph
+        from core.workflow.nodes.node_factory import DifyNodeFactory
+
+        # Create minimal GraphInitParams for static analysis
+        graph_init_params = GraphInitParams(
+            tenant_id="",
+            app_id="",
+            workflow_id="",
+            graph_config=graph_config,
+            user_id="",
+            user_from="",
+            invoke_from="",
+            call_depth=0,
+        )
+
+        # Create minimal GraphRuntimeState for static analysis
+        graph_runtime_state = GraphRuntimeState(
+            variable_pool=VariablePool(),
+            start_at=0,
+        )
+
+        # Create node factory for static analysis
+        node_factory = DifyNodeFactory(
+            graph_init_params=graph_init_params,
+            graph_runtime_state=graph_runtime_state
+        )
 
         loop_graph = Graph.init(
             graph_config=graph_config,
-            node_factory=None,  # type: ignore[arg-type]
+            node_factory=node_factory,
             root_node_id=typed_node_data.start_node_id,
         )
 

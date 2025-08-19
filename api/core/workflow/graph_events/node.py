@@ -30,10 +30,6 @@ class NodeRunStreamChunkEvent(GraphNodeEventBase):
     chunk: str = Field(..., description="the actual chunk content")
     is_final: bool = Field(default=False, description="indicates if this is the last chunk")
 
-    # Legacy fields for backward compatibility - will be removed later
-    chunk_content: str = Field(default="", description="[DEPRECATED] chunk content")
-    from_variable_selector: Optional[list[str]] = Field(default=None, description="[DEPRECATED] variable selector")
-
 
 class NodeRunRetrieverResourceEvent(GraphNodeEventBase):
     retriever_resources: Sequence[RetrievalSourceMetadata] = Field(..., description="retriever resources")

@@ -316,13 +316,9 @@ class ToolNode(Node):
                 assert isinstance(message.message, ToolInvokeMessage.TextMessage)
                 text += message.message.text
                 yield StreamChunkEvent(
-                    # New spec-compliant fields
                     selector=[node_id, "text"],
                     chunk=message.message.text,
                     is_final=False,
-                    # Legacy fields for compatibility
-                    chunk_content=message.message.text,
-                    from_variable_selector=[node_id, "text"],
                 )
             elif message.type == ToolInvokeMessage.MessageType.JSON:
                 assert isinstance(message.message, ToolInvokeMessage.JsonMessage)
@@ -334,13 +330,9 @@ class ToolNode(Node):
                 stream_text = f"Link: {message.message.text}\n"
                 text += stream_text
                 yield StreamChunkEvent(
-                    # New spec-compliant fields
                     selector=[node_id, "text"],
                     chunk=stream_text,
                     is_final=False,
-                    # Legacy fields for compatibility
-                    chunk_content=stream_text,
-                    from_variable_selector=[node_id, "text"],
                 )
             elif message.type == ToolInvokeMessage.MessageType.VARIABLE:
                 assert isinstance(message.message, ToolInvokeMessage.VariableMessage)
@@ -354,13 +346,9 @@ class ToolNode(Node):
                     variables[variable_name] += variable_value
 
                     yield StreamChunkEvent(
-                        # New spec-compliant fields
                         selector=[node_id, variable_name],
                         chunk=variable_value,
                         is_final=False,
-                        # Legacy fields for compatibility
-                        chunk_content=variable_value,
-                        from_variable_selector=[node_id, variable_name],
                     )
                 else:
                     variables[variable_name] = variable_value
@@ -423,25 +411,17 @@ class ToolNode(Node):
         # Send final chunk events for all streamed outputs
         # Final chunk for text stream
         yield StreamChunkEvent(
-            # New spec-compliant fields
             selector=[self._node_id, "text"],
             chunk="",
             is_final=True,
-            # Legacy fields for compatibility
-            chunk_content="",
-            from_variable_selector=[self._node_id, "text"],
         )
 
         # Final chunks for any streamed variables
         for var_name in variables:
             yield StreamChunkEvent(
-                # New spec-compliant fields
                 selector=[self._node_id, var_name],
                 chunk="",
                 is_final=True,
-                # Legacy fields for compatibility
-                chunk_content="",
-                from_variable_selector=[self._node_id, var_name],
             )
 
         yield StreamCompletedEvent(

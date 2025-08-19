@@ -602,9 +602,6 @@ def test_stream_output_with_fail_branch_continue_on_error():
             selector=[self.node_id, "text"],
             chunk=contents[0],
             is_final=False,
-            # Legacy fields for compatibility
-            chunk_content=contents[0],
-            from_variable_selector=[self.node_id, "text"],
         )
 
         yield StreamCompletedEvent(

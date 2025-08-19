@@ -365,8 +365,6 @@ class Node:
             selector=event.selector,
             chunk=event.chunk,
             is_final=event.is_final,
-            chunk_content=event.chunk_content,
-            from_variable_selector=event.from_variable_selector,
         )
 
     def _handle_stream_completed_event(self, event: StreamCompletedEvent) -> NodeRunSucceededEvent | NodeRunFailedEvent:

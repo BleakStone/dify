@@ -287,13 +287,9 @@ class LLMNode(Node):
 
             # Send final chunk event to indicate streaming is complete
             yield StreamChunkEvent(
-                # New spec-compliant fields
                 selector=[self._node_id, "text"],
                 chunk="",
                 is_final=True,
-                # Legacy fields for compatibility
-                chunk_content="",
-                from_variable_selector=[self._node_id, "text"],
             )
 
             yield StreamCompletedEvent(
@@ -424,13 +420,9 @@ class LLMNode(Node):
                     ):
                         full_text_buffer.write(text_part)
                         yield StreamChunkEvent(
-                            # New spec-compliant fields
                             selector=[node_id, "text"],
                             chunk=text_part,
                             is_final=False,
-                            # Legacy fields for compatibility
-                            chunk_content=text_part,
-                            from_variable_selector=[node_id, "text"],
                         )
 
                     # Update the whole metadata

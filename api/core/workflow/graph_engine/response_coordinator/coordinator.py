@@ -291,9 +291,6 @@ class ResponseStreamCoordinator:
                 selector=selector,
                 chunk=chunk,
                 is_final=is_final,
-                # Legacy fields
-                chunk_content=chunk,
-                from_variable_selector=list(selector),
             )
 
         # Standard case: selector refers to an actual node
@@ -305,9 +302,6 @@ class ResponseStreamCoordinator:
             selector=selector,
             chunk=chunk,
             is_final=is_final,
-            # Legacy fields
-            chunk_content=chunk,
-            from_variable_selector=list(selector),
         )
 
     def _process_variable_segment(self, segment: VariableSegment) -> tuple[Sequence[NodeRunStreamChunkEvent], bool]:
@@ -347,9 +341,6 @@ class ResponseStreamCoordinator:
                         selector=event.selector,  # Keep original selector
                         chunk=event.chunk,
                         is_final=event.is_final,
-                        # Legacy fields
-                        chunk_content=event.chunk_content,
-                        from_variable_selector=event.from_variable_selector,
                     )
                     events.append(updated_event)
                 else:

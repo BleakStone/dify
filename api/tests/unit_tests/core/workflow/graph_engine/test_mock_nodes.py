@@ -143,8 +143,6 @@ class MockLLMNode(MockNodeMixin, LLMNode):
                     selector=[self._node_id, "text"],
                     chunk=chunk,
                     is_final=False,
-                    chunk_content=chunk,
-                    from_variable_selector=[self._node_id, "text"],
                 )
 
             # Send final chunk
@@ -152,8 +150,6 @@ class MockLLMNode(MockNodeMixin, LLMNode):
                 selector=[self._node_id, "text"],
                 chunk="",
                 is_final=True,
-                chunk_content="",
-                from_variable_selector=[self._node_id, "text"],
             )
 
         # Create mock usage with all required fields

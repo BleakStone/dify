@@ -46,9 +46,6 @@ def create_llm_generator_with_delay(chunks: list[str], delay: float = 0.1):
                 selector=[self.id, "text"],
                 chunk=chunk,
                 is_final=i == len(chunks) - 1,
-                # Legacy fields for compatibility
-                chunk_content=chunk,
-                from_variable_selector=[self.id, "text"],
             )
 
         # Complete response

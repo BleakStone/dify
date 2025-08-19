@@ -467,8 +467,8 @@ class WorkflowBasedAppRunner:
         elif isinstance(event, NodeRunStreamChunkEvent):
             self._publish_event(
                 QueueTextChunkEvent(
-                    text=event.chunk_content,
-                    from_variable_selector=event.from_variable_selector,
+                    text=event.chunk,
+                    from_variable_selector=list(event.selector),
                     in_iteration_id=event.in_iteration_id,
                     in_loop_id=event.in_loop_id,
                 )
